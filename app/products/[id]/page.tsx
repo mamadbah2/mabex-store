@@ -156,7 +156,7 @@ export default function ProductPage() {
 
             <Button size="lg" className="w-full" onClick={handleAddToCart}>
               <ShoppingCart className="h-5 w-5 mr-2" />
-              Ajouter au panier - {(selectedPrice * selectedQuantity).toLocaleString()} GNF
+              Ajouter au panier - {(selectedPrice * selectedQuantity).toLocaleString()} SLE
             </Button>
 
             <Card className="border-muted">
