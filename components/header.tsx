@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { ShoppingCart, LogOut, Package, Menu, X } from "lucide-react"
 import { useCart } from "@/lib/cart-context"
 import type { User as UserType } from "@/lib/types"
-import { authFetch } from "@/lib/auth"
+import { authFetch } from "@/lib/api-client"
 
 export function Header() {
   const [user, setUser] = useState<UserType | null>(null)

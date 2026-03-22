@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Trash2, Plus, Minus } from "lucide-react"
 import { useCart } from "@/lib/cart-context"
-import { calculateProductPrice } from "@/lib/mock-data"
+import { calculateProductPrice } from "@/lib/utils"
 import type { CartItem } from "@/lib/types"
 
 interface CartItemProps {

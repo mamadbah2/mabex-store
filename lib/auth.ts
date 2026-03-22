@@ -155,20 +155,3 @@ export async function createUser(userData: Omit<UserType, "id" | "createdAt" | "
     throw error
   }
 }
-
-export const authFetch = async (url: string, options: RequestInit = {}) => {
-  const token = localStorage.getItem('authToken')
-  
-  const headers: HeadersInit = {
-    'Content-Type': 'application/json',
-    'Authorization': token ? `Bearer ${token}` : '',
-
-    ...options.headers
-  }
-  
-  return fetch(url, {
-    ...options,
-    headers,
-    credentials: 'include'
-  })
-}

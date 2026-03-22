@@ -2,6 +2,19 @@ import { type NextRequest, NextResponse } from "next/server"
 import { requireAuth } from "@/lib/auth"
 import connectDB from "@/lib/mongodb"
 import { Order, Product } from "@/lib/models"
+import { z } from "zod"
+
+const orderSchema = z.object({
+  items: z.array(
+    z.object({
+      productId: z.string().min(1, "L'ID du produit est requis"),
+      quantity: z.number().int().positive("La quantité doit être un nombre positif")
+    })
+  ).min(1, "La commande doit contenir au moins un article"),
+  shippingAddress: z.string().min(5, "L'adresse de livraison est requise"),
+  phone: z.string().min(8, "Le téléphone est requis"),
+  notes: z.string().optional()
+})
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,15 +25,15 @@ export async function POST(request: NextRequest) {
     }
 
     const session = await requireAuth(token)
-    const { items, shippingAddress, phone, notes } = await request.json()
-
-    if (!items || items.length === 0) {
-      return NextResponse.json({ error: "Aucun article dans la commande" }, { status: 400 })
+    
+    const body = await request.json()
+    const result = orderSchema.safeParse(body)
+    
+    if (!result.success) {
+      return NextResponse.json({ error: result.error.errors[0].message }, { status: 400 })
     }
-
-    if (!shippingAddress || !phone) {
-      return NextResponse.json({ error: "Adresse de livraison et téléphone requis" }, { status: 400 })
-    }
+    
+    const { items, shippingAddress, phone, notes } = result.data
 
     await connectDB()
 

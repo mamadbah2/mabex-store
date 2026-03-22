@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import type { Product } from "@/lib/types"
-import { calculateProductPrice } from "@/lib/mock-data"
+import { calculateProductPrice } from "@/lib/utils"
 
 interface PriceCalculatorProps {
   product: Product

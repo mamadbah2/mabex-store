@@ -1,11 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { getProductById, getUserById } from "@/lib/mock-data"
 import connectDB from "@/lib/mongodb"
 import { Product, User } from "@/lib/models"
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
-  try {
-    // const product = getProductById(params.id)
+    try {
     await connectDB()
     const { id } = await params
     const product = await Product.findOne({ _id: id })
@@ -15,7 +13,6 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     }
     
     // Include seller information
-    // const seller = getUserById(product.sellerId)
     const seller = await User.findById(product.sellerId).select("firstName lastName")
     const productWithSeller = {
       ...product,
