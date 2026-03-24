@@ -54,7 +54,7 @@ export interface Cart {
   updatedAt: Date
 }
 
-export type OrderStatus = "pending" | "confirmed" | "preparing" | "shipped" | "delivered" | "cancelled"
+export type OrderStatus = "pending" | "preparing" | "confirmed"
 
 export interface OrderItem {
   id: string
