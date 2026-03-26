@@ -129,17 +129,26 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
       return NextResponse.json({ error: "Accès refusé" }, { status: 403 })
     }
 
-    const { status, deliveredAt } = await request.json()
+    const { status } = await request.json()
 
-    if (status && !["pending", "confirmed", "preparing", "shipped", "delivered", "cancelled"].includes(status)) {
+    if (status && !["pending", "preparing", "confirmed"].includes(status)) {
       return NextResponse.json({ error: "Statut invalide" }, { status: 400 })
     }
 
     // Update order
     const updateData: any = {}
     if (status) updateData.status = status
-    if (deliveredAt) updateData.deliveredAt = new Date(deliveredAt)
     updateData.updatedAt = new Date()
+
+    // Réduire le stock uniquement lors de la confirmation
+    if (status === "confirmed" && order.status !== "confirmed") {
+      for (const item of order.items) {
+        await Product.findByIdAndUpdate(
+          item.productId,
+          { $inc: { stock: -item.quantity } }
+        )
+      }
+    }
 
     const updatedOrder = await Order.findByIdAndUpdate(
       id,

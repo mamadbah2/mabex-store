@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TechMart - Shopping Cart Variant 2</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#10B981", // Emerald 500
+                        primaryDark: "#059669",
+                        "background-light": "#F9FAFB", // Slightly lighter background
+                        "background-dark": "#111827",
+                        "card-light": "#FFFFFF",
+                        "card-dark": "#1F2937",
+                        "text-main-light": "#111827",
+                        "text-main-dark": "#F9FAFB",
+                        "text-muted-light": "#6B7280",
+                        "text-muted-dark": "#9CA3AF",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        'xl': '1.5rem',
+                        '2xl': '2rem',
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .step-connector {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark font-body transition-colors duration-200">
+<nav class="sticky top-0 z-50 bg-card-light/90 dark:bg-card-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex-shrink-0 flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-primary/30">
+                    T
+                </div>
+<span class="font-display font-bold text-2xl tracking-tight">TechMart</span>
+</div>
+<div class="hidden md:flex flex-1 max-w-lg mx-8 relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-icons-round text-text-muted-light dark:text-text-muted-dark">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 border-none rounded-2xl leading-5 bg-gray-100 dark:bg-gray-800 text-text-main-light dark:text-text-main-dark placeholder-text-muted-light dark:placeholder-text-muted-dark focus:outline-none focus:ring-2 focus:ring-primary sm:text-sm transition-all" placeholder="Search for products, brands and more..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors relative group">
+<span class="material-icons-round text-2xl">favorite_border</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-gray-800"></span>
+</button>
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors relative">
+<span class="material-icons-round text-2xl">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-primary text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white dark:border-gray-800">3</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden border-2 border-white dark:border-gray-600 shadow-sm cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJa5MJV0gkOvLhXVn9-iv-KZfBc2JdMtpmnYaKrp7BEW3PRAZJzZ1HGVENY_kw5ZHzGoANKYt4Zxz3nqaUyF0uvvUtbMef0VyfEXH7LWwzZD7PMhmtKCAFlToUY1Jbm-XZFsGVL6LgdYBmejYL3mA976i5-aeMSxTyWPndmtsYZaI8OXrwVtJNEKb_8wnO5bElnIESwIUIrvA6C0vv2Ohca7qf6seLVmRPVbCN5V2wRgdZHft8iFOeAxcM8g2vts2Xh7GEv_IxJqM"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="flex items-center gap-2 mb-8 text-sm text-text-muted-light dark:text-text-muted-dark">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-icons-round text-xs">chevron_right</span>
+<span class="text-text-main-light dark:text-text-main-dark font-medium">My Cart</span>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+<h1 class="text-3xl md:text-4xl font-display font-bold">Shopping Cart <span class="text-xl font-medium text-text-muted-light dark:text-text-muted-dark ml-2">(3 items)</span></h1>
+<button class="text-primary font-medium hover:underline text-sm flex items-center gap-1">
+<span class="material-icons-round text-base">delete_sweep</span>
+            Clear Cart
+        </button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative">
+<div class="lg:col-span-8 space-y-6">
+<div class="hidden sm:flex justify-between items-center pb-2 border-b border-gray-200 dark:border-gray-800 text-sm font-semibold text-text-muted-light uppercase tracking-wider">
+<span class="pl-2">Product Details</span>
+<span class="pr-2">Price &amp; Actions</span>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col sm:flex-row gap-6 transition-all hover:shadow-md group">
+<div class="w-full sm:w-40 h-40 bg-gray-50 dark:bg-gray-800 rounded-xl flex-shrink-0 flex items-center justify-center p-4 border border-gray-100 dark:border-gray-700">
+<img alt="MacBook Air M2" class="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp8FNQfZ5tM6SfaCTaRTXRRAg-q9-FhSAoFRppOLrR_vkcyhgSb6Z9RWIYt46RH3E-byB7CjdcN-yFNJeKfYZ7PojQEFHi6Mo1U9L_dJCLPVJLerr1u95Bdrd1dKZkit0m6ebJlLvkWdrmQo6bPDoeZnpNU2sFL2PYdrqR6vwbteVi02g4OV6dqmrxEOsJTSkHQhobvRpzRQFElY8ndlPBSBcopL4CFYQoNPLA-wSt--_DwnVVNsgzbj3p7kzCt3u7ged3oT2iD3I"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div class="flex flex-col md:flex-row justify-between items-start gap-4">
+<div class="space-y-2">
+<h3 class="text-xl font-bold text-text-main-light dark:text-text-main-dark">MacBook Air M2</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-xs font-medium text-text-muted-light">Midnight</span>
+<span class="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-xs font-medium text-text-muted-light">512GB SSD</span>
+<span class="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-xs font-medium text-text-muted-light">8GB Unified Memory</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mt-1">
+<span class="material-icons-round text-base">check_circle</span>
+<span>In Stock</span>
+<span class="text-text-muted-light dark:text-text-muted-dark font-normal mx-1">•</span>
+<span class="text-text-muted-light dark:text-text-muted-dark font-normal">Ships by Tue, Sep 12</span>
+</div>
+</div>
+<div class="text-right">
+<span class="block text-2xl font-extrabold text-text-main-light dark:text-text-main-dark tracking-tight">$1,100.00</span>
+<span class="text-xs text-text-muted-light line-through">$1,199.00</span>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row justify-between items-end sm:items-center mt-6 gap-4 border-t border-gray-100 dark:border-gray-800 pt-4">
+<div class="flex items-center gap-6">
+<div class="flex items-center border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800 h-10">
+<button class="w-10 h-full flex items-center justify-center text-text-muted-light hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 rounded-l-lg transition-colors">
+<span class="material-icons-round text-sm">remove</span>
+</button>
+<input class="w-12 h-full text-center text-sm font-semibold bg-transparent border-none p-0 focus:ring-0" readonly="" type="text" value="1"/>
+<button class="w-10 h-full flex items-center justify-center text-text-muted-light hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 rounded-r-lg transition-colors">
+<span class="material-icons-round text-sm">add</span>
+</button>
+</div>
+<button class="text-sm text-text-muted-light hover:text-primary transition-colors font-medium flex items-center gap-1">
+<span class="material-icons-round text-lg">favorite_border</span>
+                                Save
+                            </button>
+<button class="text-sm text-text-muted-light hover:text-red-500 transition-colors font-medium flex items-center gap-1">
+<span class="material-icons-round text-lg">delete_outline</span>
+                                Remove
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col sm:flex-row gap-6 transition-all hover:shadow-md group">
+<div class="w-full sm:w-40 h-40 bg-gray-50 dark:bg-gray-800 rounded-xl flex-shrink-0 flex items-center justify-center p-4 border border-gray-100 dark:border-gray-700">
+<img alt="AirPods Pro" class="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSOmSX__V8wAqTZnidJeccuoaayPvFdo0S4-V0-VxJgRbE66JVZeu1JQjvEMuLY1Wv6JPf1QggJutWDKC2sybpqDLO4oxoakpl4GSR2P8NQDsrYpq5ZfsnFo5p9DK3GIFKuLeA4lhtxzs6bsCW0t-QiEUS2gY2tej-1SViEcfvQSlO8K2I0ORTiGj6uwGA4yRv-ELhpe4qiFIHyc7QoWl4dF6C3gJdmD4rKaqoFypnMTxV8Gqt5rMozMuU1-TuplzAjhAKPRxLmPw"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div class="flex flex-col md:flex-row justify-between items-start gap-4">
+<div class="space-y-2">
+<h3 class="text-xl font-bold text-text-main-light dark:text-text-main-dark">AirPods Pro (2nd Gen)</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-xs font-medium text-text-muted-light">White</span>
+<span class="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-xs font-medium text-text-muted-light">MagSafe Case</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium mt-1">
+<span class="material-icons-round text-base">check_circle</span>
+<span>In Stock</span>
+<span class="text-text-muted-light dark:text-text-muted-dark font-normal mx-1">•</span>
+<span class="text-text-muted-light dark:text-text-muted-dark font-normal">Ships Tomorrow</span>
+</div>
+</div>
+<div class="text-right">
+<span class="block text-2xl font-extrabold text-text-main-light dark:text-text-main-dark tracking-tight">$249.00</span>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row justify-between items-end sm:items-center mt-6 gap-4 border-t border-gray-100 dark:border-gray-800 pt-4">
+<div class="flex items-center gap-6">
+<div class="flex items-center border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800 h-10">
+<button class="w-10 h-full flex items-center justify-center text-text-muted-light hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 rounded-l-lg transition-colors">
+<span class="material-icons-round text-sm">remove</span>
+</button>
+<input class="w-12 h-full text-center text-sm font-semibold bg-transparent border-none p-0 focus:ring-0" readonly="" type="text" value="1"/>
+<button class="w-10 h-full flex items-center justify-center text-text-muted-light hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 rounded-r-lg transition-colors">
+<span class="material-icons-round text-sm">add</span>
+</button>
+</div>
+<button class="text-sm text-text-muted-light hover:text-primary transition-colors font-medium flex items-center gap-1">
+<span class="material-icons-round text-lg">favorite_border</span>
+                                Save
+                            </button>
+<button class="text-sm text-text-muted-light hover:text-red-500 transition-colors font-medium flex items-center gap-1">
+<span class="material-icons-round text-lg">delete_outline</span>
+                                Remove
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col sm:flex-row gap-6 transition-all hover:shadow-md group">
+<div class="w-full sm:w-40 h-40 bg-gray-50 dark:bg-gray-800 rounded-xl flex-shrink-0 flex items-center justify-center p-4 border border-gray-100 dark:border-gray-700">
+<img alt="Compact Umbrella" class="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTI9McDkNWBoV1MMteRgb9-lcD91uQdJOno-m4WxD6hSgwUOZPoRqJLqaML7cayWs_DB0LDdHTHhygexs7vdv1T7TW964CMlc8Ei6s7khef-3Y-Q3cXXodMXFEWHVzGwRhFI7hSGcNau8UvvZpl9BY5cOJNa5G7VW0mcvQ-JHUwJm57FA6mpP9QWB6-eGYyLnhhRZGzlx1CSBPJgCc1b_SgXTasWzpUuNUG-8z7WFU2AukfLXtpDWrPEv6JJIKqYvtFdrCvpZWV6I"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div class="flex flex-col md:flex-row justify-between items-start gap-4">
+<div class="space-y-2">
+<h3 class="text-xl font-bold text-text-main-light dark:text-text-main-dark">Premium Compact Umbrella</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-xs font-medium text-text-muted-light">Black</span>
+<span class="px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-xs font-medium text-text-muted-light">Auto Open/Close</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-orange-500 font-medium mt-1">
+<span class="material-icons-round text-base">access_time</span>
+<span>Low Stock - Order Soon</span>
+</div>
+</div>
+<div class="text-right">
+<span class="block text-2xl font-extrabold text-text-main-light dark:text-text-main-dark tracking-tight">$48.00</span>
+<span class="text-xs text-text-muted-light block">$24.00 each</span>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row justify-between items-end sm:items-center mt-6 gap-4 border-t border-gray-100 dark:border-gray-800 pt-4">
+<div class="flex items-center gap-6">
+<div class="flex items-center border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800 h-10">
+<button class="w-10 h-full flex items-center justify-center text-text-muted-light hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 rounded-l-lg transition-colors">
+<span class="material-icons-round text-sm">remove</span>
+</button>
+<input class="w-12 h-full text-center text-sm font-semibold bg-transparent border-none p-0 focus:ring-0" readonly="" type="text" value="2"/>
+<button class="w-10 h-full flex items-center justify-center text-text-muted-light hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 rounded-r-lg transition-colors">
+<span class="material-icons-round text-sm">add</span>
+</button>
+</div>
+<button class="text-sm text-text-muted-light hover:text-primary transition-colors font-medium flex items-center gap-1">
+<span class="material-icons-round text-lg">favorite_border</span>
+                                Save
+                            </button>
+<button class="text-sm text-text-muted-light hover:text-red-500 transition-colors font-medium flex items-center gap-1">
+<span class="material-icons-round text-lg">delete_outline</span>
+                                Remove
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
+<div class="relative py-2 px-4 mb-2">
+<div class="absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 dark:bg-gray-700 -translate-y-1/2 rounded-full z-0"></div>
+<div class="relative z-10 flex justify-between">
+<div class="flex flex-col items-center gap-1">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-md ring-4 ring-background-light dark:ring-background-dark">
+<span class="material-icons-round text-sm font-bold">shopping_cart</span>
+</div>
+<span class="text-xs font-bold text-primary absolute -bottom-6">Cart</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-8 h-8 rounded-full bg-card-light dark:bg-card-dark border-2 border-gray-300 dark:border-gray-600 text-gray-400 flex items-center justify-center ring-4 ring-background-light dark:ring-background-dark">
+<span class="material-icons-round text-sm">local_shipping</span>
+</div>
+<span class="text-xs font-medium text-text-muted-light absolute -bottom-6">Shipping</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-8 h-8 rounded-full bg-card-light dark:bg-card-dark border-2 border-gray-300 dark:border-gray-600 text-gray-400 flex items-center justify-center ring-4 ring-background-light dark:ring-background-dark">
+<span class="material-icons-round text-sm">credit_card</span>
+</div>
+<span class="text-xs font-medium text-text-muted-light absolute -bottom-6">Payment</span>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 sm:p-8 shadow-lg border border-gray-100 dark:border-gray-800 mt-8">
+<h2 class="text-xl font-display font-bold mb-6 flex items-center gap-2">
+                    Order Summary
+                </h2>
+<div class="space-y-4 mb-6">
+<div class="flex justify-between text-text-muted-light dark:text-text-muted-dark text-sm">
+<span>Subtotal (3 items)</span>
+<span class="font-semibold text-text-main-light dark:text-text-main-dark">$1,397.00</span>
+</div>
+<div class="flex justify-between text-text-muted-light dark:text-text-muted-dark text-sm">
+<div class="flex items-center gap-1">
+<span>Shipping estimate</span>
+</div>
+<span class="font-semibold text-text-main-light dark:text-text-main-dark">$15.00</span>
+</div>
+<div class="flex justify-between text-text-muted-light dark:text-text-muted-dark text-sm">
+<div class="flex items-center gap-1">
+<span>Tax estimate</span>
+</div>
+<span class="font-semibold text-text-main-light dark:text-text-main-dark">$111.76</span>
+</div>
+<div class="flex justify-between text-green-600 dark:text-green-400 text-sm">
+<span>Savings</span>
+<span class="font-semibold">-$20.00</span>
+</div>
+<div class="pt-4 border-t border-gray-200 dark:border-gray-700 border-dashed">
+<div class="flex justify-between items-center mb-1">
+<span class="text-base font-bold text-text-main-light dark:text-text-main-dark">Order Total</span>
+<span class="text-3xl font-extrabold text-primary">$1,503.76</span>
+</div>
+<p class="text-xs text-right text-text-muted-light">Currency: USD</p>
+</div>
+</div>
+<div class="mb-6">
+<label class="block text-xs font-bold uppercase tracking-wide mb-2 text-text-muted-light">Promo Code</label>
+<div class="flex gap-2">
+<div class="relative flex-1">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-icons-round text-sm text-text-muted-light">local_offer</span>
+</span>
+<input class="block w-full pl-9 pr-4 py-2.5 border-none rounded-xl bg-gray-100 dark:bg-gray-800 text-text-main-light dark:text-text-main-dark placeholder-text-muted-light focus:outline-none focus:ring-2 focus:ring-primary text-sm font-medium" placeholder="Enter code" type="text"/>
+</div>
+<button class="px-4 py-2.5 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-xl font-bold text-sm transition-colors text-text-main-light dark:text-text-main-dark">Apply</button>
+</div>
+</div>
+<button class="w-full py-4 bg-primary hover:bg-primaryDark text-white rounded-xl font-bold text-lg shadow-lg shadow-primary/30 transition-all transform hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 group">
+<span>Proceed to Checkout</span>
+<span class="material-icons-round group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<div class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-800">
+<div class="flex items-center justify-center gap-2 text-text-muted-light text-xs mb-3">
+<span class="material-icons-round text-sm">lock</span>
+<span>Guaranteed Secure Checkout</span>
+</div>
+<div class="flex justify-center gap-3 opacity-60">
+<div class="h-6 w-10 bg-gray-200 dark:bg-gray-700 rounded"></div>
+<div class="h-6 w-10 bg-gray-200 dark:bg-gray-700 rounded"></div>
+<div class="h-6 w-10 bg-gray-200 dark:bg-gray-700 rounded"></div>
+<div class="h-6 w-10 bg-gray-200 dark:bg-gray-700 rounded"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section class="mt-16 bg-white dark:bg-gray-800/50 rounded-3xl p-8 border border-gray-200 dark:border-gray-700/50">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h2 class="text-2xl font-display font-bold text-text-main-light dark:text-text-main-dark">Frequently Bought Together</h2>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark mt-1">Customers who bought items in your cart also bought these.</p>
+</div>
+<a class="text-primary font-semibold text-sm hover:underline flex items-center" href="#">
+                View All Recommendations <span class="material-icons-round text-sm ml-1">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-background-light dark:bg-background-dark rounded-xl p-4 transition-all hover:ring-2 hover:ring-primary/50 group cursor-pointer relative border border-gray-100 dark:border-gray-700">
+<div class="absolute top-3 left-3 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">Best Match</div>
+<div class="h-40 bg-white dark:bg-gray-800 rounded-lg overflow-hidden mb-4 p-4 flex items-center justify-center relative">
+<img alt="Xbox Series X" class="h-full object-contain group-hover:scale-110 transition-transform duration-300 mix-blend-multiply dark:mix-blend-normal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgDbZQDr-7OIddsOZmQGNrh2DFvC4ut43vSDCudfLM3vc7OO-b9se6jiM3tsBtOZLny1jrrIK2dr3IKjKFrwgg2B1KQXCdVE7PztJorg22GApzPoOR_wSNLDDUvxOp0koaOwqbqsvwqdzjW9Q2zjN_4ei0UOzWEA0Gld3hzcFo_rK8wwBGNZ2ogR38BDrynBMyuofFCMpGS2NBQCLHuG3fLmGpXLV9AgWV45nJ6Y24Jhz_Jle4ZFJLrQcfV16U9ubjAkx9XQ6tPA4"/>
+<button class="absolute bottom-2 right-2 w-8 h-8 bg-primary text-white rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-icons-round text-sm">add</span>
+</button>
+</div>
+<div>
+<h3 class="font-bold text-sm leading-tight mb-1 truncate">Xbox Series X</h3>
+<div class="flex justify-between items-end mt-2">
+<div>
+<p class="text-[10px] text-text-muted-light uppercase font-bold">Console</p>
+<span class="text-lg font-extrabold text-text-main-light dark:text-text-main-dark">$570.00</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-background-light dark:bg-background-dark rounded-xl p-4 transition-all hover:ring-2 hover:ring-primary/50 group cursor-pointer border border-gray-100 dark:border-gray-700">
+<div class="h-40 bg-white dark:bg-gray-800 rounded-lg overflow-hidden mb-4 p-4 flex items-center justify-center relative">
+<img alt="Running Shoes" class="h-full object-contain group-hover:scale-110 transition-transform duration-300 mix-blend-multiply dark:mix-blend-normal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjXwuhvnmvU9VbjLTkAFmz309sGbvL2rNDPYogaRu_nYN0QGmrKYDgUXi_QOV6trSU-QbquvjEd6a_KbECBjF9r-v4godKTz7GgfkKzdi2ILqLZChdDFx704hiJS9HYoNgbWSasWdkMbREO5rvaAjvTFDB1Evpl4ruV9VT-7owYhxJ6trEnBUod06x3wp3q2UqmuWAGKc-OFYTqkzVHe3X-0jgeyY4aDvu5XpdpO50AV5DBA6xFN8EdEk6cn30cMQ0rRY0RirNHWE"/>
+<button class="absolute bottom-2 right-2 w-8 h-8 bg-primary text-white rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-icons-round text-sm">add</span>
+</button>
+</div>
+<div>
+<h3 class="font-bold text-sm leading-tight mb-1 truncate">Nike Air Max</h3>
+<div class="flex justify-between items-end mt-2">
+<div>
+<p class="text-[10px] text-text-muted-light uppercase font-bold">Apparel</p>
+<span class="text-lg font-extrabold text-text-main-light dark:text-text-main-dark">$129.00</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-background-light dark:bg-background-dark rounded-xl p-4 transition-all hover:ring-2 hover:ring-primary/50 group cursor-pointer border border-gray-100 dark:border-gray-700">
+<div class="h-40 bg-white dark:bg-gray-800 rounded-lg overflow-hidden mb-4 p-4 flex items-center justify-center relative">
+<img alt="Headphones" class="h-full object-contain group-hover:rotate-6 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChABxqEFhc20jImx3haLqTPiFjhllDQNVrTXtQuh7rcQIXWDP_YQe1kDEuMlr7z4VcyBdjs9lKgQKrNoY2m-_S5IdXdT5CM38aqAP0YkhMANoDrmACem5VFE6Leesrb4_fMeuVAcaMrerZGSFUfqoOoa_VCxFFEp9l9WwvJRypwrIiV_pjRCTm5XyOQzsch9VghjaF6uTR_LSk4u3O4LyKjEuvjne9JYhyA91r5VTsDUC2JlXQrF4bktMjv-etXD3TDHjM3IYqj0w"/>
+<button class="absolute bottom-2 right-2 w-8 h-8 bg-primary text-white rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-icons-round text-sm">add</span>
+</button>
+</div>
+<div>
+<h3 class="font-bold text-sm leading-tight mb-1 truncate">Wireless Headset</h3>
+<div class="flex justify-between items-end mt-2">
+<div>
+<p class="text-[10px] text-text-muted-light uppercase font-bold">Audio</p>
+<span class="text-lg font-extrabold text-text-main-light dark:text-text-main-dark">$89.00</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-background-light dark:bg-background-dark rounded-xl p-4 transition-all hover:ring-2 hover:ring-primary/50 group cursor-pointer border border-gray-100 dark:border-gray-700">
+<div class="absolute top-3 left-3 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-300 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">Sale</div>
+<div class="h-40 bg-white dark:bg-gray-800 rounded-lg overflow-hidden mb-4 p-4 flex items-center justify-center relative">
+<img alt="Raincoat" class="h-full object-contain group-hover:scale-110 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-kJTjjIlmpBwDOqGHMN3QEVxGxbMkdvfeqjULdzYsxs7nD21PvxA6QLnXMb1mkvWH3pFK0PaemWRLvkSWvAm2ORE10juiVDPcmnwKyAlUwLD1Inp2oiKEbE82ebI244109gm8S-K_ZI_t4SL6ASPwk3OT2ONc0xdZzcHPTozHsLLwLS-dLuNBwAC498tXMu3_C0Wlg92YHq0c3Ps4Q7KADTN8WmpWIvFuTMFgLa5j-itlX_Difwo_v22pQaRHce7wR6Pz8K92Du8"/>
+<button class="absolute bottom-2 right-2 w-8 h-8 bg-primary text-white rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-icons-round text-sm">add</span>
+</button>
+</div>
+<div>
+<h3 class="font-bold text-sm leading-tight mb-1 truncate">Waterproof Jacket</h3>
+<div class="flex justify-between items-end mt-2">
+<div>
+<p class="text-[10px] text-text-muted-light uppercase font-bold">Outdoor</p>
+<span class="text-lg font-extrabold text-text-main-light dark:text-text-main-dark">$55.00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-white dark:bg-card-dark border-t border-gray-200 dark:border-gray-800 mt-12 py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">T</div>
+<span class="font-bold text-xl">TechMart</span>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm">Your one-stop destination for all things tech and beyond. Quality products, best prices.</p>
+</div>
+<div>
+<h4 class="font-bold mb-4">Shop</h4>
+<ul class="space-y-2 text-sm text-text-muted-light dark:text-text-muted-dark">
+<li><a class="hover:text-primary transition-colors" href="#">New Arrivals</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Electronics</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Fashion</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Accessories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-4">Support</h4>
+<ul class="space-y-2 text-sm text-text-muted-light dark:text-text-muted-dark">
+<li><a class="hover:text-primary transition-colors" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Shipping</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Returns</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-4">Stay Connected</h4>
+<div class="flex gap-4 mb-4">
+<a class="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors" href="#"><i class="material-icons-round text-sm">facebook</i></a>
+<a class="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors" href="#"><i class="material-icons-round text-sm">camera_alt</i></a>
+<a class="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors" href="#"><i class="material-icons-round text-sm">alternate_email</i></a>
+</div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">© 2023 TechMart Inc. All rights reserved.</p>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark');
+    }
+</script>
+
+</body></html>

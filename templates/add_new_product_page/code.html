@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TechMart - Create Product</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#10B981", 
+                        primaryDark: "#059669",
+                        "background-light": "#F3F4F6", 
+                        "background-dark": "#111827", 
+                        "card-light": "#FFFFFF",
+                        "card-dark": "#1F2937",
+                        "text-main-light": "#111827",
+                        "text-main-dark": "#F9FAFB",
+                        "text-muted-light": "#6B7280",
+                        "text-muted-dark": "#9CA3AF",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        'xl': '1.5rem',
+                        '2xl': '2rem',
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }.file-drop-area {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 2rem;
+            border: 2px dashed #E5E7EB;
+            border-radius: 1rem;
+            transition: 0.2s;
+        }
+        .dark .file-drop-area {
+            border-color: #374151;
+        }
+        .file-drop-area:hover {
+            border-color: #10B981;
+            background-color: rgba(16, 185, 129, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark font-body transition-colors duration-200">
+<nav class="sticky top-0 z-50 bg-card-light/80 dark:bg-card-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<a class="flex-shrink-0 flex items-center gap-2 group" href="#">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-primary/30 group-hover:scale-105 transition-transform">
+                        T
+                    </div>
+<span class="font-display font-bold text-2xl tracking-tight">TechMart</span>
+</a>
+<div class="hidden md:flex flex-1 max-w-lg mx-8 relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-icons-round text-text-muted-light dark:text-text-muted-dark">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 border-none rounded-2xl leading-5 bg-gray-100 dark:bg-gray-800 text-text-main-light dark:text-text-main-dark placeholder-text-muted-light dark:placeholder-text-muted-dark focus:outline-none focus:ring-2 focus:ring-primary sm:text-sm transition-all" placeholder="Search..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden border-2 border-white dark:border-gray-600 shadow-sm cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJa5MJV0gkOvLhXVn9-iv-KZfBc2JdMtpmnYaKrp7BEW3PRAZJzZ1HGVENY_kw5ZHzGoANKYt4Zxz3nqaUyF0uvvUtbMef0VyfEXH7LWwzZD7PMhmtKCAFlToUY1Jbm-XZFsGVL6LgdYBmejYL3mA976i5-aeMSxTyWPndmtsYZaI8OXrwVtJNEKb_8wnO5bElnIESwIUIrvA6C0vv2Ohca7qf6seLVmRPVbCN5V2wRgdZHft8iFOeAxcM8g2vts2Xh7GEv_IxJqM"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<nav class="flex mb-8 text-sm text-text-muted-light dark:text-text-muted-dark">
+<a class="hover:text-primary transition-colors" href="#">Dashboard</a>
+<span class="mx-2">/</span>
+<a class="hover:text-primary transition-colors" href="#">Products</a>
+<span class="mx-2">/</span>
+<span class="text-text-main-light dark:text-text-main-dark font-medium">Add New Product</span>
+</nav>
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+<div>
+<h1 class="text-3xl font-display font-bold">Add New Product</h1>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm mt-1">Fill in the information below to create a new product listing.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-text-muted-light dark:text-text-muted-dark">
+                    Discard
+                </button>
+<button class="px-6 py-2.5 rounded-xl bg-primary text-white font-medium hover:bg-primaryDark transition-colors shadow-lg shadow-primary/30 flex items-center gap-2">
+<span class="material-icons-round text-sm">save</span>
+                    Save Product
+                </button>
+</div>
+</div>
+<form action="#" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-8">
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
+<h3 class="font-bold text-lg mb-6">General Information</h3>
+<div class="space-y-6">
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-2" for="productName">
+                                Product Name
+                            </label>
+<input class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" id="productName" placeholder="e.g. Wireless Noise Cancelling Headphones" type="text"/>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-2" for="brand">
+                                    Brand
+                                </label>
+<input class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" id="brand" placeholder="e.g. Sony, Apple" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-2" for="modelNumber">
+                                    Model Number
+                                </label>
+<input class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" id="modelNumber" placeholder="e.g. WH-1000XM5" type="text"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-2" for="description">
+                                Description
+                            </label>
+<div class="relative">
+<textarea class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none min-h-[160px]" id="description" placeholder="Describe your product main selling points..."></textarea>
+<div class="absolute bottom-3 right-3 text-xs text-text-muted-light">0/2000</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-bold text-lg">Detailed Features</h3>
+<span class="text-xs text-text-muted-light bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-md">Bulleted list for product page</span>
+</div>
+<div class="space-y-3">
+<div class="flex gap-3">
+<div class="bg-gray-100 dark:bg-gray-800 flex items-center justify-center w-10 rounded-xl text-text-muted-light">
+<span class="material-icons-round text-sm">drag_indicator</span>
+</div>
+<input class="flex-1 px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="e.g. Industry-leading noise cancellation" type="text" value="Industry-leading noise cancellation"/>
+<button class="p-3 text-text-muted-light hover:text-red-500 transition-colors" type="button">
+<span class="material-icons-round">delete_outline</span>
+</button>
+</div>
+<div class="flex gap-3">
+<div class="bg-gray-100 dark:bg-gray-800 flex items-center justify-center w-10 rounded-xl text-text-muted-light">
+<span class="material-icons-round text-sm">drag_indicator</span>
+</div>
+<input class="flex-1 px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="e.g. 30-hour battery life with quick charging" type="text" value="30-hour battery life with quick charging"/>
+<button class="p-3 text-text-muted-light hover:text-red-500 transition-colors" type="button">
+<span class="material-icons-round">delete_outline</span>
+</button>
+</div>
+<div class="flex gap-3">
+<div class="bg-gray-100 dark:bg-gray-800 flex items-center justify-center w-10 rounded-xl text-text-muted-light">
+<span class="material-icons-round text-sm">drag_indicator</span>
+</div>
+<input class="flex-1 px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="Add a new feature..." type="text"/>
+<button class="p-3 text-text-muted-light hover:text-red-500 transition-colors" type="button">
+<span class="material-icons-round">delete_outline</span>
+</button>
+</div>
+<button class="text-primary hover:text-primaryDark font-medium text-sm flex items-center gap-1 mt-2 transition-colors" type="button">
+<span class="material-icons-round text-lg">add_circle_outline</span> Add Feature
+                    </button>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-bold text-lg">Key Specifications</h3>
+<button class="text-xs text-primary hover:underline">Import from Template</button>
+</div>
+<div class="space-y-4">
+<div class="grid grid-cols-[1fr_1fr_auto] gap-4 mb-2">
+<label class="text-xs uppercase font-semibold text-text-muted-light tracking-wider">Specification</label>
+<label class="text-xs uppercase font-semibold text-text-muted-light tracking-wider">Value</label>
+<div class="w-10"></div>
+</div>
+<div class="grid grid-cols-[1fr_1fr_auto] gap-4 items-center">
+<input class="w-full px-4 py-2.5 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="e.g. Connectivity" type="text" value="Connectivity"/>
+<input class="w-full px-4 py-2.5 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="e.g. Bluetooth 5.2" type="text" value="Bluetooth 5.2"/>
+<button class="p-2 text-text-muted-light hover:text-red-500 transition-colors" type="button">
+<span class="material-icons-round">close</span>
+</button>
+</div>
+<div class="grid grid-cols-[1fr_1fr_auto] gap-4 items-center">
+<input class="w-full px-4 py-2.5 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="e.g. Weight" type="text" value="Weight"/>
+<input class="w-full px-4 py-2.5 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="e.g. 250g" type="text" value="250g"/>
+<button class="p-2 text-text-muted-light hover:text-red-500 transition-colors" type="button">
+<span class="material-icons-round">close</span>
+</button>
+</div>
+<div class="grid grid-cols-[1fr_1fr_auto] gap-4 items-center">
+<input class="w-full px-4 py-2.5 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="e.g. Battery Life" type="text"/>
+<input class="w-full px-4 py-2.5 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="e.g. 30 Hours" type="text"/>
+<button class="p-2 text-text-muted-light hover:text-red-500 transition-colors" type="button">
+<span class="material-icons-round">close</span>
+</button>
+</div>
+<button class="text-primary hover:text-primaryDark font-medium text-sm flex items-center gap-1 mt-2 transition-colors" type="button">
+<span class="material-icons-round text-lg">add</span> Add Specification Row
+                    </button>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
+<h3 class="font-bold text-lg mb-6">Product Media</h3>
+<div class="file-drop-area flex-col gap-4 cursor-pointer group">
+<div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-icons-round text-3xl">cloud_upload</span>
+</div>
+<div class="text-center">
+<p class="text-sm font-medium text-text-main-light dark:text-text-main-dark">
+<span class="text-primary hover:underline">Click to upload</span> or drag and drop
+                            </p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-1">SVG, PNG, JPG or GIF (max. 800x400px)</p>
+</div>
+<input class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" multiple="" type="file"/>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
+<div class="relative aspect-square rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 group">
+<img alt="Preview" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSOmSX__V8wAqTZnidJeccuoaayPvFdo0S4-V0-VxJgRbE66JVZeu1JQjvEMuLY1Wv6JPf1QggJutWDKC2sybpqDLO4oxoakpl4GSR2P8NQDsrYpq5ZfsnFo5p9DK3GIFKuLeA4lhtxzs6bsCW0t-QiEUS2gY2tej-1SViEcfvQSlO8K2I0ORTiGj6uwGA4yRv-ELhpe4qiFIHyc7QoWl4dF6C3gJdmD4rKaqoFypnMTxV8Gqt5rMozMuU1-TuplzAjhAKPRxLmPw"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+<button class="p-1.5 bg-white rounded-full text-red-500 hover:bg-red-50 transition-colors" type="button">
+<span class="material-icons-round text-lg">delete</span>
+</button>
+</div>
+</div>
+<div class="relative aspect-square rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 group">
+<img alt="Preview" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChABxqEFhc20jImx3haLqTPiFjhllDQNVrTXtQuh7rcQIXWDP_YQe1kDEuMlr7z4VcyBdjs9lKgQKrNoY2m-_S5IdXdT5CM38aqAP0YkhMANoDrmACem5VFE6Leesrb4_fMeuVAcaMrerZGSFUfqoOoa_VCxFFEp9l9WwvJRypwrIiV_pjRCTm5XyOQzsch9VghjaF6uTR_LSk4u3O4LyKjEuvjne9JYhyA91r5VTsDUC2JlXQrF4bktMjv-etXD3TDHjM3IYqj0w"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+<button class="p-1.5 bg-white rounded-full text-red-500 hover:bg-red-50 transition-colors" type="button">
+<span class="material-icons-round text-lg">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
+<h3 class="font-bold text-lg mb-6">Pricing &amp; Inventory</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-2" for="price">
+                                Base Price ($)
+                            </label>
+<input class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" id="price" placeholder="0.00" type="number"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-2" for="discountPrice">
+                                Discount Price ($)
+                            </label>
+<input class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" id="discountPrice" placeholder="0.00" type="number"/>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-2" for="stock">
+                                Stock Quantity
+                            </label>
+<input class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" id="stock" placeholder="0" type="number"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-2" for="sku">
+                                SKU (Optional)
+                            </label>
+<input class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" id="sku" placeholder="FOX-123" type="text"/>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-8">
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
+<h3 class="font-bold text-lg mb-4">Status</h3>
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-2">Product Status</label>
+<select class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none appearance-none cursor-pointer">
+<option value="active">Active</option>
+<option value="draft">Draft</option>
+<option value="archived">Archived</option>
+</select>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
+<span class="text-sm font-medium">Feature on Homepage</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
+<h3 class="font-bold text-lg mb-4">Organization</h3>
+<div class="space-y-6">
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-2">Category</label>
+<select class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none appearance-none cursor-pointer">
+<option disabled="" selected="" value="">Select category</option>
+<option value="electronics">Electronics</option>
+<option value="fashion">Fashion</option>
+<option value="home">Home &amp; Living</option>
+<option value="gaming">Gaming</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-2">Sub-Category</label>
+<select class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none appearance-none cursor-pointer">
+<option disabled="" selected="" value="">Select sub-category</option>
+<option value="headphones">Headphones</option>
+<option value="laptops">Laptops</option>
+<option value="cameras">Cameras</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-2">Tags</label>
+<input class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="e.g. wireless, sale, new" type="text"/>
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="px-2 py-1 rounded bg-primary/10 text-primary text-xs font-medium flex items-center gap-1">
+                                    wireless 
+                                    <button class="hover:text-primaryDark"><span class="material-icons-round text-xs">close</span></button>
+</span>
+<span class="px-2 py-1 rounded bg-primary/10 text-primary text-xs font-medium flex items-center gap-1">
+                                    bluetooth
+                                    <button class="hover:text-primaryDark"><span class="material-icons-round text-xs">close</span></button>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
+<h3 class="font-bold text-lg mb-4">Shipping Configuration</h3>
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-2">Weight (kg)</label>
+<input class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="0.0" type="number"/>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div>
+<label class="block text-xs font-medium text-text-muted-light dark:text-text-muted-dark mb-1">Length (cm)</label>
+<input class="w-full px-3 py-2 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="0" type="number"/>
+</div>
+<div>
+<label class="block text-xs font-medium text-text-muted-light dark:text-text-muted-dark mb-1">Width (cm)</label>
+<input class="w-full px-3 py-2 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="0" type="number"/>
+</div>
+<div>
+<label class="block text-xs font-medium text-text-muted-light dark:text-text-muted-dark mb-1">Height (cm)</label>
+<input class="w-full px-3 py-2 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="0" type="number"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-2">Shipping Class</label>
+<select class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none appearance-none cursor-pointer text-sm">
+<option value="standard">Standard Shipping</option>
+<option value="heavy">Heavy Item</option>
+<option value="fragile">Fragile</option>
+</select>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
+<h3 class="font-bold text-lg mb-4">Related Products</h3>
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark mb-2">Cross-sells / Accessories</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-text-muted-light">
+<span class="material-icons-round text-lg">search</span>
+</span>
+<input class="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-sm" placeholder="Search product to add..." type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-gray-200 overflow-hidden">
+<img alt="acc" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSOmSX__V8wAqTZnidJeccuoaayPvFdo0S4-V0-VxJgRbE66JVZeu1JQjvEMuLY1Wv6JPf1QggJutWDKC2sybpqDLO4oxoakpl4GSR2P8NQDsrYpq5ZfsnFo5p9DK3GIFKuLeA4lhtxzs6bsCW0t-QiEUS2gY2tej-1SViEcfvQSlO8K2I0ORTiGj6uwGA4yRv-ELhpe4qiFIHyc7QoWl4dF6C3gJdmD4rKaqoFypnMTxV8Gqt5rMozMuU1-TuplzAjhAKPRxLmPw"/>
+</div>
+<div class="text-sm">
+<p class="font-medium line-clamp-1">Protective Case</p>
+<p class="text-xs text-text-muted-light">$24.00</p>
+</div>
+</div>
+<button class="text-text-muted-light hover:text-red-500"><span class="material-icons-round text-sm">close</span></button>
+</div>
+<div class="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-gray-200 overflow-hidden">
+<img alt="acc" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChABxqEFhc20jImx3haLqTPiFjhllDQNVrTXtQuh7rcQIXWDP_YQe1kDEuMlr7z4VcyBdjs9lKgQKrNoY2m-_S5IdXdT5CM38aqAP0YkhMANoDrmACem5VFE6Leesrb4_fMeuVAcaMrerZGSFUfqoOoa_VCxFFEp9l9WwvJRypwrIiV_pjRCTm5XyOQzsch9VghjaF6uTR_LSk4u3O4LyKjEuvjne9JYhyA91r5VTsDUC2JlXQrF4bktMjv-etXD3TDHjM3IYqj0w"/>
+</div>
+<div class="text-sm">
+<p class="font-medium line-clamp-1">USB-C Cable</p>
+<p class="text-xs text-text-muted-light">$12.00</p>
+</div>
+</div>
+<button class="text-text-muted-light hover:text-red-500"><span class="material-icons-round text-sm">close</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</form>
+</main>
+<footer class="bg-card-light dark:bg-card-dark border-t border-gray-200 dark:border-gray-800 mt-12 py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">T</div>
+<span class="font-bold text-xl">TechMart</span>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm">Your one-stop destination for all things tech and beyond. Quality products, best prices.</p>
+</div>
+<div>
+<h4 class="font-bold mb-4">Shop</h4>
+<ul class="space-y-2 text-sm text-text-muted-light dark:text-text-muted-dark">
+<li><a class="hover:text-primary transition-colors" href="#">New Arrivals</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Electronics</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Fashion</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Accessories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-4">Support</h4>
+<ul class="space-y-2 text-sm text-text-muted-light dark:text-text-muted-dark">
+<li><a class="hover:text-primary transition-colors" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Shipping</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Returns</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-4">Stay Connected</h4>
+<div class="flex gap-4 mb-4">
+<a class="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors" href="#"><i class="material-icons-round text-sm">facebook</i></a>
+<a class="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors" href="#"><i class="material-icons-round text-sm">camera_alt</i></a>
+<a class="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors" href="#"><i class="material-icons-round text-sm">alternate_email</i></a>
+</div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">© 2023 TechMart Inc. All rights reserved.</p>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
+</body></html>

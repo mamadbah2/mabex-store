@@ -113,7 +113,6 @@ export default function SellerOrdersPage() {
         },
         body: JSON.stringify({
           status: newStatus,
-          deliveredAt: newStatus === "delivered" ? new Date().toISOString() : undefined,
         }),
       })
 
@@ -128,7 +127,7 @@ export default function SellerOrdersPage() {
     }
   }
 
-  const statuses = ["pending", "confirmed", "preparing", "shipped", "delivered", "cancelled"]
+  const statuses = ["pending", "preparing", "confirmed"]
 
   if (loading) {
     return (
@@ -252,11 +251,8 @@ export default function SellerOrdersPage() {
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="pending">En attente</SelectItem>
-                            <SelectItem value="confirmed">Confirmée</SelectItem>
                             <SelectItem value="preparing">En préparation</SelectItem>
-                            <SelectItem value="shipped">Expédiée</SelectItem>
-                            <SelectItem value="delivered">Livrée</SelectItem>
-                            <SelectItem value="cancelled">Annulée</SelectItem>
+                            <SelectItem value="confirmed">Confirmée</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>

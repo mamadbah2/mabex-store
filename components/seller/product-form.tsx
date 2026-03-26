@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Plus, Trash2 } from "lucide-react"
 import type { Product, PriceTier } from "@/lib/types"
 import { ImageUpload } from "./image-upload"
@@ -129,13 +130,24 @@ export function ProductForm({ product, onSubmit, onCancel, loading, sellerId }: 
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label htmlFor="category">Catégorie *</Label>
-              <Input
-                id="category"
+              <Select
                 value={formData.category}
-                onChange={(e) => handleInputChange("category", e.target.value)}
-                placeholder="Ex: Chaussures, Accessoires"
-                required
-              />
+                onValueChange={(value) => handleInputChange("category", value)}
+              >
+                <SelectTrigger id="category">
+                  <SelectValue placeholder="Sélectionner une catégorie" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Chaussures">Chaussures</SelectItem>
+                  <SelectItem value="Accessoires">Accessoires</SelectItem>
+                  <SelectItem value="Montres">Montres</SelectItem>
+                  <SelectItem value="Vêtements">Vêtements</SelectItem>
+                  <SelectItem value="Électronique">Électronique</SelectItem>
+                  <SelectItem value="Beauté & Santé">Beauté & Santé</SelectItem>
+                  <SelectItem value="Maison & Jardin">Maison & Jardin</SelectItem>
+                  <SelectItem value="Sport & Loisirs">Sport & Loisirs</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
             <div>

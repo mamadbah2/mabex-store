@@ -75,12 +75,6 @@ export async function POST(request: NextRequest) {
         quantity: item.quantity,
         price: unitPrice
       })
-
-      // Mettre à jour le stock du produit
-      await Product.findByIdAndUpdate(
-        item.productId,
-        { $inc: { stock: -item.quantity } }
-      )
     }
 
     console.log("Shipping Address:", shippingAddress)

@@ -111,57 +111,65 @@ export default function SellerDashboard() {
       <div className="container mx-auto px-4 py-8">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Produits actifs</p>
-                  <p className="text-2xl font-bold text-primary">{stats.activeProducts}</p>
-                  <p className="text-xs text-muted-foreground">sur {stats.totalProducts} total</p>
+          <Link href="/seller/products">
+            <Card className="cursor-pointer hover:shadow-md transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-muted-foreground">Produits actifs</p>
+                    <p className="text-2xl font-bold text-primary">{stats.activeProducts}</p>
+                    <p className="text-xs text-muted-foreground">sur {stats.totalProducts} total</p>
+                  </div>
+                  <Package className="h-8 w-8 text-primary" />
                 </div>
-                <Package className="h-8 w-8 text-primary" />
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </Link>
 
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Commandes</p>
-                  <p className="text-2xl font-bold text-primary">{stats.totalOrders}</p>
-                  <p className="text-xs text-muted-foreground">total</p>
+          <Link href="/seller/orders">
+            <Card className="cursor-pointer hover:shadow-md transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-muted-foreground">Commandes</p>
+                    <p className="text-2xl font-bold text-primary">{stats.totalOrders}</p>
+                    <p className="text-xs text-muted-foreground">total</p>
+                  </div>
+                  <ShoppingCart className="h-8 w-8 text-primary" />
                 </div>
-                <ShoppingCart className="h-8 w-8 text-primary" />
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </Link>
 
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Chiffre d'affaires</p>
-                  <p className="text-2xl font-bold text-primary">{stats.totalRevenue.toLocaleString()}</p>
-                  <p className="text-xs text-muted-foreground">SLE</p>
+          <Link href="/seller/orders">
+            <Card className="cursor-pointer hover:shadow-md transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-muted-foreground">Chiffre d'affaires</p>
+                    <p className="text-2xl font-bold text-primary">{stats.totalRevenue.toLocaleString()}</p>
+                    <p className="text-xs text-muted-foreground">SLE</p>
+                  </div>
+                  <TrendingUp className="h-8 w-8 text-primary" />
                 </div>
-                <TrendingUp className="h-8 w-8 text-primary" />
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </Link>
 
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">En attente</p>
-                  <p className="text-2xl font-bold text-yellow-600">{stats.ordersByStatus.pending || 0}</p>
-                  <p className="text-xs text-muted-foreground">commandes</p>
+          <Link href="/seller/orders">
+            <Card className="cursor-pointer hover:shadow-md transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-muted-foreground">En attente</p>
+                    <p className="text-2xl font-bold text-yellow-600">{stats.ordersByStatus.pending || 0}</p>
+                    <p className="text-xs text-muted-foreground">commandes</p>
+                  </div>
+                  <Settings className="h-8 w-8 text-yellow-600" />
                 </div>
-                <Settings className="h-8 w-8 text-yellow-600" />
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

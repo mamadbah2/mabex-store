@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sony WH-1000XM5 - TechMart</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#10B981", // Emerald 500 equivalent from screenshot
+                        primaryDark: "#059669",
+                        "background-light": "#F3F4F6", // Gray 100
+                        "background-dark": "#111827", // Gray 900
+                        "card-light": "#FFFFFF",
+                        "card-dark": "#1F2937",
+                        "text-main-light": "#111827",
+                        "text-main-dark": "#F9FAFB",
+                        "text-muted-light": "#6B7280",
+                        "text-muted-dark": "#9CA3AF",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem", // High border radius from the screenshot
+                        'xl': '1.5rem',
+                        '2xl': '2rem',
+                        '3xl': '2.5rem',
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }.tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-content.active {
+            max-height: 500px;}
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark font-body transition-colors duration-200">
+<nav class="sticky top-0 z-50 bg-card-light/80 dark:bg-card-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.location.href='#'">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-primary/30">
+                        T
+                    </div>
+<span class="font-display font-bold text-2xl tracking-tight">TechMart</span>
+</div>
+<div class="hidden md:flex flex-1 max-w-lg mx-8 relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-icons-round text-text-muted-light dark:text-text-muted-dark">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 border-none rounded-2xl leading-5 bg-gray-100 dark:bg-gray-800 text-text-main-light dark:text-text-main-dark placeholder-text-muted-light dark:placeholder-text-muted-dark focus:outline-none focus:ring-2 focus:ring-primary sm:text-sm transition-all" placeholder="Search for products, brands and more..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors relative group">
+<span class="material-icons-round text-2xl">favorite_border</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-gray-800"></span>
+</button>
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors relative">
+<span class="material-icons-round text-2xl">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-primary text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white dark:border-gray-800">3</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden border-2 border-white dark:border-gray-600 shadow-sm cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJa5MJV0gkOvLhXVn9-iv-KZfBc2JdMtpmnYaKrp7BEW3PRAZJzZ1HGVENY_kw5ZHzGoANKYt4Zxz3nqaUyF0uvvUtbMef0VyfEXH7LWwzZD7PMhmtKCAFlToUY1Jbm-XZFsGVL6LgdYBmejYL3mA976i5-aeMSxTyWPndmtsYZaI8OXrwVtJNEKb_8wnO5bElnIESwIUIrvA6C0vv2Ohca7qf6seLVmRPVbCN5V2wRgdZHft8iFOeAxcM8g2vts2Xh7GEv_IxJqM"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+<nav aria-label="Breadcrumb" class="flex text-sm text-text-muted-light dark:text-text-muted-dark overflow-x-auto whitespace-nowrap">
+<ol class="flex items-center space-x-2">
+<li><a class="hover:text-primary transition-colors" href="#">Home</a></li>
+<li><span class="material-icons-round text-base">chevron_right</span></li>
+<li><a class="hover:text-primary transition-colors" href="#">Electronics</a></li>
+<li><span class="material-icons-round text-base">chevron_right</span></li>
+<li><a class="hover:text-primary transition-colors" href="#">Audio</a></li>
+<li><span class="material-icons-round text-base">chevron_right</span></li>
+<li class="font-medium text-text-main-light dark:text-text-main-dark">Sony WH-1000XM5</li>
+</ol>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+<div class="lg:col-span-6 space-y-6">
+<div class="aspect-[4/3] bg-card-light dark:bg-card-dark rounded-3xl p-8 flex items-center justify-center relative shadow-sm border border-gray-100 dark:border-gray-800 group overflow-hidden">
+<button class="absolute top-6 right-6 z-10 p-3 bg-white dark:bg-gray-700 rounded-full shadow-md text-gray-400 hover:text-red-500 transition-colors">
+<span class="material-icons-round text-xl">favorite_border</span>
+</button>
+<img alt="Sony Headphones Main" class="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal transform transition-transform duration-500 hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChABxqEFhc20jImx3haLqTPiFjhllDQNVrTXtQuh7rcQIXWDP_YQe1kDEuMlr7z4VcyBdjs9lKgQKrNoY2m-_S5IdXdT5CM38aqAP0YkhMANoDrmACem5VFE6Leesrb4_fMeuVAcaMrerZGSFUfqoOoa_VCxFFEp9l9WwvJRypwrIiV_pjRCTm5XyOQzsch9VghjaF6uTR_LSk4u3O4LyKjEuvjne9JYhyA91r5VTsDUC2JlXQrF4bktMjv-etXD3TDHjM3IYqj0w"/>
+<div class="absolute bottom-6 left-6 flex gap-2">
+<span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-lg border border-primary/20">Best Seller</span>
+<span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-text-muted-light dark:text-text-muted-dark text-xs font-bold rounded-lg border border-gray-200 dark:border-gray-600">Free Shipping</span>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-4">
+<button class="aspect-square rounded-2xl bg-card-light dark:bg-card-dark border-2 border-primary p-2 cursor-pointer shadow-sm">
+<img alt="View 1" class="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChABxqEFhc20jImx3haLqTPiFjhllDQNVrTXtQuh7rcQIXWDP_YQe1kDEuMlr7z4VcyBdjs9lKgQKrNoY2m-_S5IdXdT5CM38aqAP0YkhMANoDrmACem5VFE6Leesrb4_fMeuVAcaMrerZGSFUfqoOoa_VCxFFEp9l9WwvJRypwrIiV_pjRCTm5XyOQzsch9VghjaF6uTR_LSk4u3O4LyKjEuvjne9JYhyA91r5VTsDUC2JlXQrF4bktMjv-etXD3TDHjM3IYqj0w"/>
+</button>
+<button class="aspect-square rounded-2xl bg-card-light dark:bg-card-dark border border-gray-200 dark:border-gray-700 hover:border-primary p-2 cursor-pointer transition-colors">
+<div class="w-full h-full bg-gray-100 dark:bg-gray-800 rounded-xl flex items-center justify-center">
+<span class="material-icons-round text-gray-400">headphones</span>
+</div>
+</button>
+<button class="aspect-square rounded-2xl bg-card-light dark:bg-card-dark border border-gray-200 dark:border-gray-700 hover:border-primary p-2 cursor-pointer transition-colors">
+<div class="w-full h-full bg-gray-100 dark:bg-gray-800 rounded-xl flex items-center justify-center">
+<span class="material-icons-round text-gray-400">360</span>
+</div>
+</button>
+<button class="aspect-square rounded-2xl bg-card-light dark:bg-card-dark border border-gray-200 dark:border-gray-700 hover:border-primary p-2 cursor-pointer transition-colors relative">
+<div class="w-full h-full bg-gray-900/50 absolute inset-0 rounded-xl flex items-center justify-center text-white font-bold text-lg z-10">+4</div>
+<div class="w-full h-full bg-gray-100 dark:bg-gray-800 rounded-xl flex items-center justify-center">
+<span class="material-icons-round text-gray-400">image</span>
+</div>
+</button>
+</div>
+</div>
+<div class="lg:col-span-6 flex flex-col">
+<div class="mb-6">
+<div class="flex items-center justify-between mb-2">
+<span class="text-primary font-bold uppercase tracking-wider text-sm">Sony</span>
+<div class="flex items-center gap-1 text-yellow-400 font-bold text-sm bg-yellow-400/10 px-2 py-1 rounded-lg">
+<span class="material-icons-round text-base">star</span>
+                        4.9 (2,453 Reviews)
+                    </div>
+</div>
+<h1 class="text-3xl md:text-4xl font-display font-bold text-text-main-light dark:text-text-main-dark mb-4 leading-tight">WH-1000XM5 Wireless Noise Cancelling Headphones</h1>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm mb-8">
+<div class="flex items-baseline gap-3 mb-6">
+<span class="text-4xl font-bold text-text-main-light dark:text-text-main-dark">$348.00</span>
+<span class="text-lg text-text-muted-light dark:text-text-muted-dark line-through">$399.00</span>
+<span class="px-2 py-1 bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400 text-xs font-bold rounded uppercase ml-2">Save $51</span>
+</div>
+<div class="mb-6">
+<span class="block text-sm font-semibold mb-3">Color: <span class="text-text-muted-light font-normal">Silver</span></span>
+<div class="flex gap-3">
+<button class="w-10 h-10 rounded-full bg-[#E3E3E3] border-2 border-primary shadow-sm ring-2 ring-offset-2 ring-primary ring-offset-white dark:ring-offset-gray-800"></button>
+<button class="w-10 h-10 rounded-full bg-[#111827] border border-gray-300 dark:border-gray-600 hover:scale-110 transition-transform"></button>
+<button class="w-10 h-10 rounded-full bg-[#1e3a8a] border border-gray-300 dark:border-gray-600 hover:scale-110 transition-transform"></button>
+</div>
+</div>
+<div class="flex gap-4 mb-6">
+<div class="w-32 bg-gray-100 dark:bg-gray-800 rounded-xl flex items-center justify-between px-3 relative">
+<button class="w-8 h-8 flex items-center justify-center text-text-muted-light hover:text-primary transition-colors">
+<span class="material-icons-round text-sm">remove</span>
+</button>
+<input class="bg-transparent border-none text-center w-10 font-bold focus:ring-0 p-0" readonly="" type="number" value="1"/>
+<button class="w-8 h-8 flex items-center justify-center text-text-muted-light hover:text-primary transition-colors">
+<span class="material-icons-round text-sm">add</span>
+</button>
+</div>
+<button class="flex-1 bg-primary hover:bg-primaryDark text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-primary/30 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2">
+<span class="material-icons-round">shopping_cart</span>
+                        Add to Cart
+                    </button>
+</div>
+<div class="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 font-medium">
+<span class="material-icons-round text-base">check_circle</span>
+                    In stock and ready to ship
+                </div>
+</div>
+<section>
+<h3 class="text-xl font-display font-bold mb-4">Key Specifications</h3>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-2">
+<div class="p-6 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-800">
+<h4 class="font-bold mb-4 text-primary">General</h4>
+<dl class="space-y-4 text-sm">
+<div class="flex justify-between">
+<dt class="text-text-muted-light">Headphone Type</dt>
+<dd class="font-medium">Over-Ear</dd>
+</div>
+<div class="flex justify-between">
+<dt class="text-text-muted-light">Weight</dt>
+<dd class="font-medium">250g</dd>
+</div>
+<div class="flex justify-between">
+<dt class="text-text-muted-light">Driver Unit</dt>
+<dd class="font-medium">30mm</dd>
+</div>
+</dl>
+</div>
+<div class="p-6">
+<h4 class="font-bold mb-4 text-primary">Connectivity &amp; Power</h4>
+<dl class="space-y-4 text-sm">
+<div class="flex justify-between">
+<dt class="text-text-muted-light">Bluetooth Version</dt>
+<dd class="font-medium">5.2</dd>
+</div>
+<div class="flex justify-between">
+<dt class="text-text-muted-light">Battery Life</dt>
+<dd class="font-medium">Max 30 hrs (NC ON)</dd>
+</div>
+<div class="flex justify-between">
+<dt class="text-text-muted-light">Charging Time</dt>
+<dd class="font-medium">Approx. 3.5 hrs</dd>
+</div>
+</dl>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+<div class="lg:col-span-8 space-y-12">
+<section>
+<div class="flex border-b border-gray-200 dark:border-gray-700 mb-6">
+<button class="tab-button text-lg font-semibold py-3 px-6 -mb-px border-b-2 border-primary text-primary dark:text-primary transition-colors duration-200" data-tab="product-description">Product Description</button>
+<button class="tab-button text-lg font-semibold py-3 px-6 -mb-px border-b-2 border-transparent text-text-muted-light hover:text-text-main-light dark:hover:text-text-main-dark transition-colors duration-200" data-tab="features-benefits">Features &amp; Benefits</button>
+<button class="tab-button text-lg font-semibold py-3 px-6 -mb-px border-b-2 border-transparent text-text-muted-light hover:text-text-main-light dark:hover:text-text-main-dark transition-colors duration-200" data-tab="customer-reviews">Customer Reviews</button>
+</div>
+<div class="tab-content active" id="product-description">
+<h3 class="sr-only">Product Description</h3>
+<div class="prose prose-lg dark:prose-invert max-w-none text-text-muted-light dark:text-text-muted-dark">
+<p class="mb-4">
+                        The WH-1000XM5 headphones rewrite the rules for distraction-free listening. Two processors control 8 microphones for unprecedented noise cancellation and exceptional call quality. With a newly developed driver, DSEE – Extreme and Hi-Res audio support the WH-1000XM5 headphones provide awe-inspiring audio quality.
+                    </p>
+<p>
+                        From airplane noise to people’s voices, our wireless WH-1000XM5 headphones with multiple microphone noise canceling keep out more high and mid frequency sounds than ever. And with Auto NC Optimizer, noise canceling is automatically optimized based on your wearing conditions and environment.
+                    </p>
+</div>
+</div>
+<div class="tab-content" id="features-benefits">
+<h3 class="sr-only">Features &amp; Benefits</h3>
+<div class="space-y-6">
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+<span class="material-icons-round">battery_charging_full</span>
+</div>
+<h4 class="font-bold text-lg">30-hour Battery Life</h4>
+</div>
+<p class="text-text-muted-light">Long-lasting power with quick charging. Get 3 hours of playback from just a 3-minute charge, perfect for those on the go.</p>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+<span class="material-icons-round">surround_sound</span>
+</div>
+<h4 class="font-bold text-lg">360 Reality Audio</h4>
+</div>
+<p class="text-text-muted-light">Immerse yourself in music like never before. With 360 Reality Audio, sound is placed all around you, creating a truly cinematic listening experience.</p>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-10 h-10 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 flex items-center justify-center">
+<span class="material-icons-round">mic</span>
+</div>
+<h4 class="font-bold text-lg">Crystal Clear Calls</h4>
+</div>
+<p class="text-text-muted-light">Equipped with 4 beamforming microphones and AI-based noise reduction, your voice comes across clearly even in noisy environments.</p>
+</div>
+</div>
+</div>
+<div class="tab-content" id="customer-reviews">
+<h3 class="sr-only">Customer Reviews</h3>
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-2xl font-display font-bold">Customer Reviews</h3>
+<button class="text-primary font-semibold hover:underline">Write a review</button>
+</div>
+<div class="space-y-6">
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 border border-gray-100 dark:border-gray-800">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center font-bold text-sm">JD</div>
+<div>
+<h5 class="font-bold text-sm">John Doe</h5>
+<span class="text-xs text-text-muted-light">Verified Purchase • 2 days ago</span>
+</div>
+</div>
+<div class="flex text-yellow-400 text-sm">
+<span class="material-icons-round">star</span>
+<span class="material-icons-round">star</span>
+<span class="material-icons-round">star</span>
+<span class="material-icons-round">star</span>
+<span class="material-icons-round">star</span>
+</div>
+</div>
+<p class="text-text-main-light dark:text-text-main-dark mb-4">
+                            Absolutely incredible noise cancellation. I use these on the subway every day and it's like I'm in my own world. The comfort is top-notch too, I can wear them for hours without any fatigue.
+                        </p>
+<div class="flex items-center gap-4 text-sm text-text-muted-light">
+<button class="flex items-center gap-1 hover:text-text-main-light transition-colors">
+<span class="material-icons-round text-lg">thumb_up</span> Helpful (12)
+                            </button>
+<button class="flex items-center gap-1 hover:text-text-main-light transition-colors">
+<span class="material-icons-round text-lg">chat_bubble_outline</span> Comment
+                            </button>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-6 border border-gray-100 dark:border-gray-800">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-sm">AS</div>
+<div>
+<h5 class="font-bold text-sm">Alice Smith</h5>
+<span class="text-xs text-text-muted-light">Verified Purchase • 1 week ago</span>
+</div>
+</div>
+<div class="flex text-yellow-400 text-sm">
+<span class="material-icons-round">star</span>
+<span class="material-icons-round">star</span>
+<span class="material-icons-round">star</span>
+<span class="material-icons-round">star</span>
+<span class="material-icons-round text-gray-300">star</span>
+</div>
+</div>
+<p class="text-text-main-light dark:text-text-main-dark mb-4">
+                            Great sound quality, but the auto-pause feature can be a bit sensitive sometimes. Otherwise, solid build and premium feel.
+                        </p>
+<div class="flex items-center gap-4 text-sm text-text-muted-light">
+<button class="flex items-center gap-1 hover:text-text-main-light transition-colors">
+<span class="material-icons-round text-lg">thumb_up</span> Helpful (4)
+                            </button>
+<button class="flex items-center gap-1 hover:text-text-main-light transition-colors">
+<span class="material-icons-round text-lg">chat_bubble_outline</span> Comment
+                            </button>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-3 border border-gray-200 dark:border-gray-700 rounded-xl font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">View All Reviews</button>
+</div>
+</section>
+</div>
+<div class="lg:col-span-4 space-y-6">
+<div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
+<h4 class="font-bold mb-4 flex items-center gap-2">
+<span class="material-icons-round text-primary">local_shipping</span> Delivery Options
+                 </h4>
+<div class="space-y-4">
+<div class="flex gap-3">
+<div class="mt-1 w-4 h-4 rounded-full border-2 border-primary flex items-center justify-center">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+</div>
+<div>
+<p class="text-sm font-bold">Free Standard Shipping</p>
+<p class="text-xs text-text-muted-light">Arrives by Fri, Oct 24</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="mt-1 w-4 h-4 rounded-full border-2 border-gray-300 dark:border-gray-600"></div>
+<div>
+<p class="text-sm font-bold">Express Shipping (+$12.00)</p>
+<p class="text-xs text-text-muted-light">Arrives by Wed, Oct 22</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
+<h4 class="font-bold mb-4 flex items-center gap-2">
+<span class="material-icons-round text-primary">verified_user</span> Warranty
+                 </h4>
+<p class="text-sm text-text-muted-light mb-4">
+                     This product comes with a 1-year manufacturer warranty. Extend your coverage with TechMart Care.
+                 </p>
+<div class="flex items-center gap-3 p-3 bg-white dark:bg-gray-700 rounded-xl border border-gray-200 dark:border-gray-600 cursor-pointer hover:border-primary transition-colors">
+<div class="w-5 h-5 rounded border border-gray-400 flex items-center justify-center"></div>
+<div class="flex-1">
+<p class="text-sm font-bold">2-Year Protection</p>
+<p class="text-xs text-text-muted-light">$29.00</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section>
+<div class="flex justify-between items-end mb-6">
+<h2 class="text-2xl font-display font-bold">You might also like</h2>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-primary hover:text-white transition-colors">
+<span class="material-icons-round text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-primary hover:text-white transition-colors">
+<span class="material-icons-round text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all border border-gray-100 dark:border-gray-800 group cursor-pointer relative">
+<button class="absolute top-4 right-4 z-10 w-8 h-8 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center shadow-md text-gray-400 hover:text-red-500 transition-colors">
+<span class="material-icons-round text-lg">favorite</span>
+</button>
+<div class="h-48 bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 p-4 flex items-center justify-center">
+<img alt="AirPods" class="h-full object-contain group-hover:scale-110 transition-transform duration-300 mix-blend-multiply dark:mix-blend-normal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSOmSX__V8wAqTZnidJeccuoaayPvFdo0S4-V0-VxJgRbE66JVZeu1JQjvEMuLY1Wv6JPf1QggJutWDKC2sybpqDLO4oxoakpl4GSR2P8NQDsrYpq5ZfsnFo5p9DK3GIFKuLeA4lhtxzs6bsCW0t-QiEUS2gY2tej-1SViEcfvQSlO8K2I0ORTiGj6uwGA4yRv-ELhpe4qiFIHyc7QoWl4dF6C3gJdmD4rKaqoFypnMTxV8Gqt5rMozMuU1-TuplzAjhAKPRxLmPw"/>
+</div>
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-lg leading-tight">AirPods Pro</h3>
+<div class="flex items-center gap-1 text-yellow-400 text-sm font-bold">
+<span class="material-icons-round text-base">star</span> 4.9
+                        </div>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm mb-4 line-clamp-1">Active Noise Cancellation</p>
+<div class="flex justify-between items-center">
+<span class="text-xl font-bold text-text-main-light dark:text-text-main-dark">$249.00</span>
+<button class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-xl flex items-center justify-center text-text-main-light dark:text-text-main-dark hover:bg-primary hover:text-white transition-colors">
+<span class="material-icons-round">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all border border-gray-100 dark:border-gray-800 group cursor-pointer relative">
+<button class="absolute top-4 right-4 z-10 w-8 h-8 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center shadow-md text-gray-400 hover:text-red-500 transition-colors">
+<span class="material-icons-round text-lg">favorite</span>
+</button>
+<div class="h-48 bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 p-4 flex items-center justify-center">
+<img alt="Beats" class="h-full object-contain group-hover:scale-110 transition-transform duration-300 mix-blend-multiply dark:mix-blend-normal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChABxqEFhc20jImx3haLqTPiFjhllDQNVrTXtQuh7rcQIXWDP_YQe1kDEuMlr7z4VcyBdjs9lKgQKrNoY2m-_S5IdXdT5CM38aqAP0YkhMANoDrmACem5VFE6Leesrb4_fMeuVAcaMrerZGSFUfqoOoa_VCxFFEp9l9WwvJRypwrIiV_pjRCTm5XyOQzsch9VghjaF6uTR_LSk4u3O4LyKjEuvjne9JYhyA91r5VTsDUC2JlXQrF4bktMjv-etXD3TDHjM3IYqj0w"/>
+</div>
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-lg leading-tight">Beats Studio3</h3>
+<div class="flex items-center gap-1 text-yellow-400 text-sm font-bold">
+<span class="material-icons-round text-base">star</span> 4.5
+                        </div>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm mb-4 line-clamp-1">Wireless Noise Cancelling</p>
+<div class="flex justify-between items-center">
+<span class="text-xl font-bold text-text-main-light dark:text-text-main-dark">$199.99</span>
+<button class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-xl flex items-center justify-center text-text-main-light dark:text-text-main-dark hover:bg-primary hover:text-white transition-colors">
+<span class="material-icons-round">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all border border-gray-100 dark:border-gray-800 group cursor-pointer relative">
+<span class="absolute top-4 left-4 z-10 bg-primary text-white text-xs font-bold px-2 py-1 rounded-md shadow-sm">New</span>
+<button class="absolute top-4 right-4 z-10 w-8 h-8 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center shadow-md text-gray-400 hover:text-red-500 transition-colors">
+<span class="material-icons-round text-lg">favorite</span>
+</button>
+<div class="h-48 bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 p-4 flex items-center justify-center">
+<img alt="MacBook Air" class="h-full object-contain group-hover:scale-110 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp8FNQfZ5tM6SfaCTaRTXRRAg-q9-FhSAoFRppOLrR_vkcyhgSb6Z9RWIYt46RH3E-byB7CjdcN-yFNJeKfYZ7PojQEFHi6Mo1U9L_dJCLPVJLerr1u95Bdrd1dKZkit0m6ebJlLvkWdrmQo6bPDoeZnpNU2sFL2PYdrqR6vwbteVi02g4OV6dqmrxEOsJTSkHQhobvRpzRQFElY8ndlPBSBcopL4CFYQoNPLA-wSt--_DwnVVNsgzbj3p7kzCt3u7ged3oT2iD3I"/>
+</div>
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-lg leading-tight">MacBook Air</h3>
+<div class="flex items-center gap-1 text-yellow-400 text-sm font-bold">
+<span class="material-icons-round text-base">star</span> 5.0
+                        </div>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm mb-4 line-clamp-1">Perfect companion</p>
+<div class="flex justify-between items-center">
+<span class="text-xl font-bold text-text-main-light dark:text-text-main-dark">$1100.00</span>
+<button class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-xl flex items-center justify-center text-text-main-light dark:text-text-main-dark hover:bg-primary hover:text-white transition-colors">
+<span class="material-icons-round">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all border border-gray-100 dark:border-gray-800 group cursor-pointer relative">
+<button class="absolute top-4 right-4 z-10 w-8 h-8 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center shadow-md text-gray-400 hover:text-red-500 transition-colors">
+<span class="material-icons-round text-lg">favorite</span>
+</button>
+<div class="h-48 bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden mb-4 p-4 flex items-center justify-center">
+<img alt="Xbox" class="h-full object-contain group-hover:scale-110 transition-transform duration-300 mix-blend-multiply dark:mix-blend-normal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgDbZQDr-7OIddsOZmQGNrh2DFvC4ut43vSDCudfLM3vc7OO-b9se6jiM3tsBtOZLny1jrrIK2dr3IKjKFrwgg2B1KQXCdVE7PztJorg22GApzPoOR_wSNLDDUvxOp0koaOwqbqsvwqdzjW9Q2zjN_4ei0UOzWEA0Gld3hzcFo_rK8wwBGNZ2ogR38BDrynBMyuofFCMpGS2NBQCLHuG3fLmGpXLV9AgWV45nJ6Y24Jhz_Jle4ZFJLrQcfV16U9ubjAkx9XQ6tPA4"/>
+</div>
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-lg leading-tight">Xbox Series X</h3>
+<div class="flex items-center gap-1 text-yellow-400 text-sm font-bold">
+<span class="material-icons-round text-base">star</span> 4.8
+                        </div>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm mb-4 line-clamp-1">For immersive gaming</p>
+<div class="flex justify-between items-center">
+<span class="text-xl font-bold text-text-main-light dark:text-text-main-dark">$570.00</span>
+<button class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-xl flex items-center justify-center text-text-main-light dark:text-text-main-dark hover:bg-primary hover:text-white transition-colors">
+<span class="material-icons-round">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-card-light dark:bg-card-dark border-t border-gray-200 dark:border-gray-800 mt-12 py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">T</div>
+<span class="font-bold text-xl">TechMart</span>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm">Your one-stop destination for all things tech and beyond. Quality products, best prices.</p>
+</div>
+<div>
+<h4 class="font-bold mb-4">Shop</h4>
+<ul class="space-y-2 text-sm text-text-muted-light dark:text-text-muted-dark">
+<li><a class="hover:text-primary transition-colors" href="#">New Arrivals</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Electronics</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Fashion</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Accessories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-4">Support</h4>
+<ul class="space-y-2 text-sm text-text-muted-light dark:text-text-muted-dark">
+<li><a class="hover:text-primary transition-colors" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Shipping</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Returns</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-4">Stay Connected</h4>
+<div class="flex gap-4 mb-4">
+<a class="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors" href="#"><i class="material-icons-round text-sm">facebook</i></a>
+<a class="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors" href="#"><i class="material-icons-round text-sm">camera_alt</i></a>
+<a class="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors" href="#"><i class="material-icons-round text-sm">alternate_email</i></a>
+</div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">© 2023 TechMart Inc. All rights reserved.</p>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple script to toggle dark mode for testing purposes if user system pref changes or manual toggle added later
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        // Script for tab functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Deactivate all buttons and content
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('border-primary', 'text-primary', 'dark:text-primary');
+                        btn.classList.add('border-transparent', 'text-text-muted-light', 'hover:text-text-main-light', 'dark:hover:text-text-main-dark');
+                    });
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    // Activate clicked button and corresponding content
+                    button.classList.add('border-primary', 'text-primary', 'dark:text-primary');
+                    button.classList.remove('border-transparent', 'text-text-muted-light', 'hover:text-text-main-light', 'dark:hover:text-text-main-dark');
+                    const targetTab = button.dataset.tab;
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+            // Set initial active tab
+            if (tabButtons.length > 0) {
+                tabButtons[0].click();
+            }
+        });
+    </script>
+
+</body></html>
