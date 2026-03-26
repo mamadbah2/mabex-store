@@ -115,7 +115,6 @@ export default function OrderDetailsPage() {
                 <OrderTimeline
                   currentStatus={order.status}
                   createdAt={new Date(order.createdAt)}
-                  deliveredAt={order.deliveredAt ? new Date(order.deliveredAt) : undefined}
                 />
               </CardContent>
             </Card>
