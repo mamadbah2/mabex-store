@@ -87,6 +87,9 @@ export function Header() {
             </Link>
             {user && (
               <>
+                <Link href="/profile" className="text-muted-foreground hover:text-primary transition-colors">
+                  Mon Profil
+                </Link>
                 <Link href="/orders" className="text-muted-foreground hover:text-primary transition-colors">
                   Mes Commandes
                 </Link>
@@ -169,6 +172,13 @@ export function Header() {
 
               {user && (
                 <>
+                  <Link
+                    href="/profile"
+                    className="block px-3 py-2 text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
+                    onClick={closeMobileMenu}
+                  >
+                    Mon Profil
+                  </Link>
                   <Link
                     href="/orders"
                     className="block px-3 py-2 text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
