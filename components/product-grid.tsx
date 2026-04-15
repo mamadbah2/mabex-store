@@ -3,9 +3,10 @@ import type { Product } from "@/lib/types"
 
 interface ProductGridProps {
   products: Product[]
+  columns?: 3 | 4
 }
 
-export function ProductGrid({ products }: ProductGridProps) {
+export function ProductGrid({ products, columns = 4 }: ProductGridProps) {
   if (products.length === 0) {
     return (
       <div className="text-center py-12">
@@ -14,8 +15,13 @@ export function ProductGrid({ products }: ProductGridProps) {
     )
   }
 
+  const gridClass =
+    columns === 3
+      ? "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"
+      : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div className={gridClass}>
       {products.map((product) => (
         <ProductCard key={product._id} product={product} />
       ))}
