@@ -142,7 +142,7 @@ export default function OrdersPage() {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar */}
           <div className="lg:w-72 shrink-0">
-            <AccountSidebar activePage="orders" user={user} />
+            <AccountSidebar user={user} />
           </div>
 
           {/* Main Content */}

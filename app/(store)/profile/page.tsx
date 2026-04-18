@@ -141,7 +141,7 @@ export default function ProfilePage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Sidebar */}
           <div className="lg:col-span-3">
-            <AccountSidebar activePage="profile" user={user} />
+            <AccountSidebar user={user} />
           </div>
 
           {/* Main Content */}

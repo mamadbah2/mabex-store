@@ -159,10 +159,10 @@ export default function ProductPage() {
   }
 
   return (
-    <div className="bg-background">
+    <div className="bg-background pb-28 lg:pb-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumbs */}
-        <Breadcrumb className="mb-8">
+        <Breadcrumb className="mb-8 hidden sm:block">
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
@@ -230,7 +230,7 @@ export default function ProductPage() {
 
             {/* Thumbnails */}
             {product.images.length > 1 && (
-              <div className="grid grid-cols-4 gap-3">
+              <div className="grid grid-cols-4 gap-2 sm:gap-3">
                 {product.images.slice(0, 4).map((image, index) => (
                   <button
                     key={index}
@@ -278,8 +278,8 @@ export default function ProductPage() {
               onQuantityChange={handleQuantityChange}
             />
 
-            {/* Action buttons */}
-            <div className="flex gap-3">
+            {/* Action buttons — hidden on mobile (replaced by sticky bar) */}
+            <div className="hidden lg:flex gap-3">
               <Button
                 size="lg"
                 className="flex-1 rounded-xl font-bold shadow-lg shadow-primary/30 py-6"
@@ -467,6 +467,26 @@ export default function ProductPage() {
             <ProductGrid products={relatedProducts} columns={4} />
           </div>
         )}
+      </div>
+
+      {/* Sticky CTA — mobile only */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 p-4 bg-card/95 backdrop-blur-md border-t border-border lg:hidden">
+        <div className="flex items-center gap-3 max-w-lg mx-auto">
+          <div className="shrink-0">
+            <p className="text-xs text-muted-foreground">Total</p>
+            <p className="text-base font-bold text-primary">
+              {(selectedPrice * selectedQuantity).toLocaleString()} SLE
+            </p>
+          </div>
+          <Button
+            size="lg"
+            className="flex-1 rounded-xl font-bold shadow-lg shadow-primary/30"
+            onClick={handleAddToCart}
+          >
+            <ShoppingCart className="w-5 h-5 mr-2" />
+            Ajouter au panier
+          </Button>
+        </div>
       </div>
     </div>
   )

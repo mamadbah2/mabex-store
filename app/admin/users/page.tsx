@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
-import { ArrowLeft, Plus, Edit, Trash2, Search, Eye, EyeOff, Info } from "lucide-react"
+import { Plus, Edit, Trash2, Search, Eye, EyeOff, Info } from "lucide-react"
 import Link from "next/link"
 import type { User } from "@/lib/types"
 
@@ -28,20 +28,7 @@ export default function AdminUsersPage() {
 
   const checkAuth = async () => {
     const token = localStorage.getItem("authToken")
-    const userData = localStorage.getItem("user")
-
-    if (!token || !userData) {
-      router.push("/")
-      return
-    }
-
-    const user = JSON.parse(userData)
-    if (user.role !== "admin") {
-      router.push("/")
-      return
-    }
-
-    await fetchUsers(token)
+    if (token) await fetchUsers(token)
   }
 
   const fetchUsers = async (token: string) => {
@@ -149,30 +136,16 @@ export default function AdminUsersPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center">
-            <p className="text-lg">Chargement des utilisateurs...</p>
-          </div>
-        </div>
+      <div className="p-6 lg:p-8 text-center py-20">
+        <p className="text-lg text-muted-foreground">Chargement des utilisateurs...</p>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
+    <div className="p-6 lg:p-8 max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-4">
-            <Link href="/admin">
-              <Button variant="ghost">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Dashboard
-              </Button>
-            </Link>
-            <h1 className="text-3xl font-bold">Gestion des Utilisateurs</h1>
-          </div>
+          <h1 className="text-3xl font-bold">Gestion des Utilisateurs</h1>
 
           <Link href="/admin/users/new">
             <Button>
@@ -309,7 +282,6 @@ export default function AdminUsersPage() {
             ))}
           </div>
         )}
-      </div>
     </div>
   )
 }

@@ -20,44 +20,23 @@ export default function EditProductPage() {
   const [error, setError] = useState<string>("")
 
   useEffect(() => {
-    checkAuth()
+    const userData = localStorage.getItem("user")
+    if (!userData) return
+    const user = JSON.parse(userData)
+    setSellerId(user.id || user._id || "")
   }, [])
 
   useEffect(() => {
-    if (sellerId && productId) {
-      fetchProduct()
-    }
+    if (sellerId && productId) fetchProduct()
   }, [sellerId, productId])
-
-  const checkAuth = () => {
-    const token = localStorage.getItem("authToken")
-    const userData = localStorage.getItem("user")
-
-    if (!token || !userData) {
-      router.push("/")
-      return
-    }
-
-    const user = JSON.parse(userData)
-    if (user.role !== "seller" && user.role !== "admin") {
-      router.push("/")
-      return
-    }
-
-    setSellerId(user.id || user._id || "")
-  }
 
   const fetchProduct = async () => {
     const token = localStorage.getItem("authToken")
     if (!token) return
-
     try {
       const response = await fetch(`/api/seller/products/${productId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       })
-
       if (response.ok) {
         const data = await response.json()
         setProduct(data.product)
@@ -78,7 +57,6 @@ export default function EditProductPage() {
 
   const handleSubmit = async (productData: any) => {
     setLoading(true)
-
     try {
       const token = localStorage.getItem("authToken")
       const response = await fetch(`/api/seller/products/${productId}`, {
@@ -89,7 +67,6 @@ export default function EditProductPage() {
         },
         body: JSON.stringify(productData),
       })
-
       if (response.ok) {
         router.push("/seller/products")
       } else {
@@ -104,53 +81,34 @@ export default function EditProductPage() {
     }
   }
 
-  const handleCancel = () => {
-    router.push("/seller/products")
-  }
-
   if (fetchLoading) {
     return (
-      <div className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 py-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center py-12">
-              <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-              <p className="text-lg">Chargement du produit...</p>
-            </div>
-          </div>
-        </div>
+      <div className="p-6 lg:p-8 max-w-4xl mx-auto text-center py-20">
+        <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-muted-foreground">Chargement du produit...</p>
       </div>
     )
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 py-8">
-          <div className="max-w-4xl mx-auto">
-            {/* Header */}
-            <div className="flex items-center gap-4 mb-8">
+      <div className="p-6 lg:p-8 max-w-4xl mx-auto">
+        <div className="flex items-center gap-4 mb-8">
+          <Link href="/seller/products">
+            <Button variant="ghost" size="sm">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Mes produits
+            </Button>
+          </Link>
+          <h1 className="text-3xl font-bold">Erreur</h1>
+        </div>
+        <div className="text-center py-12">
+          <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-6 max-w-md mx-auto">
+            <p className="text-destructive font-medium">{error}</p>
+            <div className="mt-4">
               <Link href="/seller/products">
-                <Button variant="ghost">
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  Mes produits
-                </Button>
+                <Button variant="outline">Retour à mes produits</Button>
               </Link>
-              <h1 className="text-3xl font-bold">Erreur</h1>
-            </div>
-
-            {/* Error Message */}
-            <div className="text-center py-12">
-              <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-6 max-w-md mx-auto">
-                <p className="text-destructive font-medium">{error}</p>
-                <div className="mt-4">
-                  <Link href="/seller/products">
-                    <Button variant="outline">
-                      Retour à mes produits
-                    </Button>
-                  </Link>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -158,38 +116,29 @@ export default function EditProductPage() {
     )
   }
 
-  if (!product) {
-    return null
-  }
+  if (!product) return null
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="flex items-center gap-4 mb-8">
-            <Link href="/seller/products">
-              <Button variant="ghost">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Mes produits
-              </Button>
-            </Link>
-            <div>
-              <h1 className="text-3xl font-bold">Modifier le produit</h1>
-              <p className="text-muted-foreground">{product.name}</p>
-            </div>
-          </div>
-
-          {/* Form */}
-          <ProductForm 
-            product={product}
-            onSubmit={handleSubmit} 
-            onCancel={handleCancel} 
-            loading={loading}
-            sellerId={sellerId}
-          />
+    <div className="p-6 lg:p-8 max-w-4xl mx-auto">
+      <div className="flex items-center gap-4 mb-8">
+        <Link href="/seller/products">
+          <Button variant="ghost" size="sm">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Mes produits
+          </Button>
+        </Link>
+        <div>
+          <h1 className="text-3xl font-bold">Modifier le produit</h1>
+          <p className="text-muted-foreground">{product.name}</p>
         </div>
       </div>
+      <ProductForm
+        product={product}
+        onSubmit={handleSubmit}
+        onCancel={() => router.push("/seller/products")}
+        loading={loading}
+        sellerId={sellerId}
+      />
     </div>
   )
 }
