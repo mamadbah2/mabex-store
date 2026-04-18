@@ -1,11 +1,12 @@
 "use client"
 
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
+import { useCart } from "@/lib/cart-context"
 import {
   User,
   Package,
@@ -14,10 +15,10 @@ import {
   CreditCard,
   LogOut,
   Headphones,
+  ShoppingCart,
 } from "lucide-react"
 
 interface AccountSidebarProps {
-  activePage: "profile" | "orders"
   user: {
     firstName: string
     lastName: string
@@ -26,15 +27,19 @@ interface AccountSidebarProps {
 }
 
 const navItems = [
-  { label: "Mon Profil", href: "/profile", icon: User, key: "profile" as const },
-  { label: "Mes Commandes", href: "/orders", icon: Package, key: "orders" as const },
+  { label: "Mon Profil", href: "/profile", icon: User },
+  { label: "Mes Commandes", href: "/orders", icon: Package },
+  { label: "Panier", href: "/cart", icon: ShoppingCart, showCount: true },
   { label: "Wishlist", href: "#", icon: Heart, disabled: true },
   { label: "Adresses", href: "#", icon: MapPin, disabled: true },
   { label: "Paiements", href: "#", icon: CreditCard, disabled: true },
 ]
 
-export function AccountSidebar({ activePage, user }: AccountSidebarProps) {
+export function AccountSidebar({ user }: AccountSidebarProps) {
   const router = useRouter()
+  const pathname = usePathname()
+  const { state } = useCart()
+  const cartItemCount = state.itemCount ?? state.items?.reduce((sum, item) => sum + item.quantity, 0) ?? 0
 
   const initials = `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`.toUpperCase()
 
@@ -79,7 +84,7 @@ export function AccountSidebar({ activePage, user }: AccountSidebarProps) {
         {/* Navigation */}
         <nav className="space-y-1">
           {navItems.map((item) => {
-            const isActive = "key" in item && item.key === activePage
+            const isActive = pathname === item.href
             const Icon = item.icon
 
             if (item.disabled) {
@@ -110,6 +115,11 @@ export function AccountSidebar({ activePage, user }: AccountSidebarProps) {
               >
                 <Icon className="w-5 h-5" />
                 <span className="text-sm">{item.label}</span>
+                {item.showCount && cartItemCount > 0 && (
+                  <Badge className="ml-auto bg-primary text-primary-foreground text-[10px] px-1.5 py-0 h-5">
+                    {cartItemCount}
+                  </Badge>
+                )}
               </Link>
             )
           })}

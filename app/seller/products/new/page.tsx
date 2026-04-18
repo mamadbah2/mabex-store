@@ -13,30 +13,14 @@ export default function NewProductPage() {
   const [sellerId, setSellerId] = useState<string>("")
 
   useEffect(() => {
-    checkAuth()
-  }, [])
-
-  const checkAuth = () => {
-    const token = localStorage.getItem("authToken")
     const userData = localStorage.getItem("user")
-
-    if (!token || !userData) {
-      router.push("/")
-      return
-    }
-
+    if (!userData) return
     const user = JSON.parse(userData)
-    if (user.role !== "seller" && user.role !== "admin") {
-      router.push("/")
-      return
-    }
-
     setSellerId(user.id || user._id || "")
-  }
+  }, [])
 
   const handleSubmit = async (productData: any) => {
     setLoading(true)
-
     try {
       const token = localStorage.getItem("authToken")
       const response = await fetch("/api/seller/products", {
@@ -47,7 +31,6 @@ export default function NewProductPage() {
         },
         body: JSON.stringify(productData),
       })
-
       if (response.ok) {
         router.push("/seller/products")
       } else {
@@ -62,34 +45,23 @@ export default function NewProductPage() {
     }
   }
 
-  const handleCancel = () => {
-    router.push("/seller/products")
-  }
-
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="flex items-center gap-4 mb-8">
-            <Link href="/seller/products">
-              <Button variant="ghost">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Mes produits
-              </Button>
-            </Link>
-            <h1 className="text-3xl font-bold">Nouveau Produit</h1>
-          </div>
-
-          {/* Form */}
-          <ProductForm 
-            onSubmit={handleSubmit} 
-            onCancel={handleCancel} 
-            loading={loading}
-            sellerId={sellerId}
-          />
-        </div>
+    <div className="p-6 lg:p-8 max-w-4xl mx-auto">
+      <div className="flex items-center gap-4 mb-8">
+        <Link href="/seller/products">
+          <Button variant="ghost" size="sm">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Mes produits
+          </Button>
+        </Link>
+        <h1 className="text-3xl font-bold">Nouveau Produit</h1>
       </div>
+      <ProductForm
+        onSubmit={handleSubmit}
+        onCancel={() => router.push("/seller/products")}
+        loading={loading}
+        sellerId={sellerId}
+      />
     </div>
   )
 }

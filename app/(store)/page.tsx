@@ -87,8 +87,8 @@ export default function HomePage() {
               <p className="text-white/80 text-base md:text-lg mb-6 max-w-lg">
                 Des prix degressifs selon vos quantites — du detail au gros, trouvez les meilleurs tarifs.
               </p>
-              <Link href="/products">
-                <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-bold rounded-xl shadow-lg">
+              <Link href="/products" className="w-full sm:w-auto inline-block">
+                <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-bold rounded-xl shadow-lg w-full sm:w-auto">
                   Voir les Produits
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
@@ -123,7 +123,7 @@ export default function HomePage() {
         <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2 mb-8">
           <button
             onClick={() => setSelectedCategory(null)}
-            className={`px-5 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
+            className={`px-5 py-3 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
               selectedCategory === null
                 ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30"
                 : "bg-card border border-border text-foreground hover:border-primary/50"
@@ -135,7 +135,7 @@ export default function HomePage() {
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-5 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
+              className={`px-5 py-3 rounded-xl text-sm font-semibold whitespace-nowrap transition-all ${
                 selectedCategory === category
                   ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30"
                   : "bg-card border border-border text-foreground hover:border-primary/50"

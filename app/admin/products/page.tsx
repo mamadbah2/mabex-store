@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ArrowLeft, Search, Eye, EyeOff, Edit, Trash2, Filter } from "lucide-react"
+import { Search, Eye, EyeOff, Edit, Trash2, Filter } from "lucide-react"
 import Link from "next/link"
 import type { Product } from "@/lib/types"
 
@@ -40,20 +40,7 @@ export default function AdminProductsPage() {
 
   const checkAuth = async () => {
     const token = localStorage.getItem("authToken")
-    const userData = localStorage.getItem("user")
-
-    if (!token || !userData) {
-      router.push("/")
-      return
-    }
-
-    const user = JSON.parse(userData)
-    if (user.role !== "admin") {
-      router.push("/")
-      return
-    }
-
-    await fetchProducts(token)
+    if (token) await fetchProducts(token)
   }
 
   const fetchProducts = async (token: string) => {
@@ -164,30 +151,16 @@ export default function AdminProductsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center">
-            <p className="text-lg">Chargement des produits...</p>
-          </div>
-        </div>
+      <div className="p-6 lg:p-8 text-center py-20">
+        <p className="text-lg text-muted-foreground">Chargement des produits...</p>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
+    <div className="p-6 lg:p-8 max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-4">
-            <Link href="/admin">
-              <Button variant="ghost">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Dashboard Admin
-              </Button>
-            </Link>
-            <h1 className="text-3xl font-bold">Gestion des Produits</h1>
-          </div>
+          <h1 className="text-3xl font-bold">Gestion des Produits</h1>
           <Badge variant="outline" className="px-4 py-2">
             {filteredProducts.length} produit{filteredProducts.length > 1 ? 's' : ''} affiché{filteredProducts.length > 1 ? 's' : ''}
           </Badge>
@@ -313,7 +286,6 @@ export default function AdminProductsPage() {
             ))}
           </div>
         )}
-      </div>
     </div>
   )
 }

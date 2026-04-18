@@ -4,8 +4,6 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import "./globals.css"
 import { CartProvider } from "@/lib/cart-context"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
@@ -32,11 +30,7 @@ html {
       </head>
       <body>
         <CartProvider>
-          <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
+          {children}
         </CartProvider>
         <Toaster />
       </body>
